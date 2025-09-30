@@ -1,1 +1,1 @@
-pymongo
+pip install --upgrade pymongo
