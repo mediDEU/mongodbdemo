@@ -21,4 +21,4 @@ jobs:
       - name: Install dependencies
         run:  pip install pymongo
       - name: Ping MongoDB
-        run: python mongo_ping.py
+        run: python connectdb.py
