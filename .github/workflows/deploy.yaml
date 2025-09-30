@@ -1,20 +1,15 @@
-name: Python MongoDB Sample CI
+name: MongoDB Ping Test
 
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  build:
+  ping-mongodb:
     runs-on: ubuntu-latest
-
     env:
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
-      MONGODB_DB: ${{ secrets.MONGODB_DB }}
-      MONGODB_COLLECTION: ${{ secrets.MONGODB_COLLECTION }}
-
     steps:
       - uses: actions/checkout@v4
 
@@ -24,7 +19,6 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: python -m pip install "pymongo[srv]"
-
-      - name: Run app
-        run: python connectdb.py
+        run:  pip install pymongo
+      - name: Ping MongoDB
+        run: python mongo_ping.py
